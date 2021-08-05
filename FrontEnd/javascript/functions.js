@@ -7,10 +7,14 @@ function getPerId(id){
 }
 
 function updateSensorsList(data) {
+    if (typeof(data) == 'undefined') {
+        console.log('No sensors found');
+        getPerId('sensors-div').innerHTML = 'no sensors detected, refresh to detect sensors';
+    } else {
     for (let sensor of data) {
         sensorsList.push(new Sensor(sensor.id, sensor.name, sensor.type, sensor.active));
     }
-}
+}}
 
 //this function recives the Sensors Information from sensorsList und renders them in the HTML Page
 function updateSensors(){
