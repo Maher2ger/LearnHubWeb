@@ -8,8 +8,8 @@ const server = app.listen(port, function(){
     console.log(`listening for requests on port ${port}`);
 });
 // Static files
-app.use(express.static('/home/maher/WebstormProjects/LearnHubWeb/FrontEnd'));
 app.use(express.static('public'));  //public contains all media data
+app.use(express.static('/home/maher/WebstormProjects/LearnHubWeb/FrontEnd'));
 
 app.get('/',(req, res)=> {
     res.sendFile("/home/maher/WebstormProjects/LearnHubWeb/FrontEnd/main.html");

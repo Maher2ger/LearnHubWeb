@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Main</title>
@@ -10,6 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
     <script src="javascript/functions.js"></script>
     <script src="javascript/classes.js"></script>
+    <style type="text/css">
+        .btn-success {
+        }
+    </style>
 </head>
 <body>
 
@@ -23,13 +27,12 @@
             <button id="refresh-button" class="btn btn-info btn-lg" name="refresh-button">refresh</button>
             <div id="sensors-div">
                 <br><br>
-                <p id="sensors-field" class="big">no sensors detected, refresh to detect sensors</p>
+                <p class="big">no sensors detected, refresh to detect sensors</p>
             </div>
 
             <div id="buttons-div">
                 <button class="btn btn-success" id="start-recording" name="start-recording">
                     start recording
-                </button>
                 </button>
                 <button class="btn btn-danger" id="stop-recording" name="stop-recording" hidden="true">
                     stop recording
@@ -48,7 +51,7 @@
 <!--          right div                    -->
 <div id="right-div" class="split right">
     <div id="history-head">
-        <h3 style="text-decoration: underline">Recordings History</h3><br>
+        <h2 style="text-decoration: underline">Recordings History</h2><br>
     </div>
     <!-- new recordings will be add here -->
     <div id="recordings-div" class="centered">
