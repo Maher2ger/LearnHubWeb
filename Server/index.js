@@ -1,5 +1,6 @@
 const express = require('express');
 const socket = require('socket.io');
+var path = require('path');
 
 // App setup
 const app = express();
@@ -9,11 +10,11 @@ const server = app.listen(port, function(){
 });
 // Static files
 app.use(express.static('public'));  //public contains all media data
-app.use(express.static('/home/maher/WebstormProjects/LearnHubWeb/FrontEnd'));
+app.use(express.static(__dirname + '/../FrontEnd'));
+
 
 app.get('/',(req, res)=> {
-    res.sendFile("/home/maher/WebstormProjects/LearnHubWeb/FrontEnd/main.html");
-})
+    res.sendFile(path.resolve(__dirname+'/../FrontEnd/main.html'));})
 // Socket setup & pass server
 const io = socket(server);
 let controlPanelId = false;
