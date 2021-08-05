@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Main</title>
+    <link href="css/mystyles.css" rel="stylesheet" />
+    <link href="css/mystyles2.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
+    <script src="javascript/functions.js"></script>
+    <script src="javascript/classes.js"></script>
+</head>
+<body>
+
+<!--         left div              -->
+
+<div id="left-div" class="split centered">
+    <h1 id="head">LearnHub</h1>
+
+    <div>
+        <div id="control-div">
+            <button id="refresh-button" class="btn btn-info btn-lg" name="refresh-button">refresh</button>
+            <div id="sensors-div">
+                <br><br>
+                <p id="sensors-field" class="big">no sensors detected, refresh to detect sensors</p>
+            </div>
+
+            <div id="buttons-div">
+                <button class="btn btn-success" id="start-recording" name="start-recording">
+                    start recording
+                </button>
+                </button>
+                <button class="btn btn-danger" id="stop-recording" name="stop-recording" hidden="true">
+                    stop recording
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div id="stopwatch">
+        <div class="circle">
+            <span class="time" id="display">00:00:00</span>
+        </div>
+    </div>
+</div>
+<div id="recording-running" class="cssload-loader" hidden>recording ...</div>
+<!--          right div                    -->
+<div id="right-div" class="split right">
+    <div id="history-head">
+        <h3 style="text-decoration: underline">Recordings History</h3><br>
+    </div>
+    <!-- new recordings will be add here -->
+    <div id="recordings-div" class="centered">
+    </div>
+
+</div>
+</body>
+<script src="javascript/client_socket.js"></script>
+<script src="javascript/variables.js"></script>
+<script src="javascript/timer.js"></script>
+<script src="javascript/control.js"></script>
+</html>

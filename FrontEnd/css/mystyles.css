@@ -1,0 +1,218 @@
+body {
+    background-color: #6610f2;
+}
+
+h1 {
+    font-size: 48px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
+    text-align: center;
+    line-height: 59px;
+    padding: 0 64px;
+    margin: 0;
+}
+
+
+/*  IDs    */
+/* ####################################################################*/
+
+/* Control the left side */
+#left-div {
+    width: 65%;
+    left: 100px;
+}
+
+/* Control the right side */
+#right-div {
+    width: 19%;
+    right: 20px;
+    background-color: #ADD8E6;
+}
+
+#control-div {
+    border: 0px solid black;
+    background-color: #F0F8FF;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#sensors-div {
+    display: inline-block;
+    height: 150px;
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    overflow-x: scroll;
+    background-color: #ADD8E6;
+    border-radius: 5px;
+}
+
+#recordings-div {
+
+}
+
+#button-div {
+
+}
+
+#refresh-button {
+    width: 80%;
+}
+
+#stopwatch {
+    margin-top: 10px;
+    padding:10px;
+    border: 0px solid black;
+    background-color: #F0F8FF;
+    border-radius: 5px;
+    padding: 10px;
+
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 23px;
+    width: 100%;
+    padding-top: 25px;
+}
+
+#history-head {
+    display: inline-block;
+    top:0px;
+    width:100%;
+    background-color: white;
+    padding: 10px;
+}
+
+#recording-run {
+    hidden: true;
+}
+
+
+
+/*  Classes    */
+/* ####################################################################*/
+
+.Sensor {
+    display:inline-block;
+    padding:4px;
+    margin:3px;
+    border: 3px solid;
+    border-color: red;
+    width: 200px;
+    height:fit-content;
+    background-color: WhiteSmoke;
+    text-align: left;
+    border-radius:6px;
+}
+
+.Sensor {
+    display:inline-block;
+    padding:4px;
+    margin:3px;
+    border: 2 solid;
+    border-color: green;
+    width: 200px;
+    height:fit-content;
+    background-color: WhiteSmoke;
+    text-align: left;
+    border-radius:6px;
+}
+
+.deavtivated {
+    border-color: red;
+    background-color: #A9A9A9;
+
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.Sensor:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: #FFEBCD;
+    border-radius: 3px;
+}
+
+
+
+
+.split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 4px;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+    text-align: center;
+    justify-content: center;}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.big {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 270px;
+    width: 270px;
+
+    border: 2px solid;
+    border-radius: 50%;
+}
+
+.time {
+    font-family: "Roboto Mono", monospace;
+    font-weight: 300;
+    font-size: 48px;
+}
+
+.recording-entry {
+    display: inline-block;
+    border: 0px solid gray;
+    margin: 10px;
+    width: 90%;
+    text-align: left;
+    background-color: WhiteSmoke;
+    padding: 5px;
+    border-radius: 2%;
+}
+
+.recording-entry:hover {
+    background-color: white;
+    border: 0px blue outset;
+    width: 95%;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 0,0.05);
+    border-radius: 10px;
+}
+
+
+.cat {
+    color: #008080;
+    font-weight: bold;
+    padding-right: 3px;
+
+}
+
+#recording-running {
+    left:100px;
+    top:30px;
+    position:absolute;
+    margin: 4px;
+    padding: 4px;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid black;
+    background-color: #FFFFE0;
+    border-radius: 0px 20px 20px 0px;
+}
