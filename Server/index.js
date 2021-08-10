@@ -8,13 +8,35 @@ const port = 5500;
 const server = app.listen(port, function(){
     console.log(`listening for requests on port ${port}`);
 });
+
+app.set('views-engine','ejs');
+
+app.get('/',(req, res) => {
+    res.render('index.ejs');
+});
+
+app.get('/login',(req, res) => {
+    res.render('login.ejs');
+});
+
+app.get('/register',(req, res) => {
+    res.render('register.ejs');
+});
+
+app.post('/register',(req, res) => {
+
+})
 // Static files
 app.use(express.static('public'));  //public contains all media data
 app.use(express.static(__dirname + '/../FrontEnd'));
 
 
+
+/*
 app.get('/',(req, res)=> {
     res.sendFile(path.resolve(__dirname+'/../FrontEnd/main.html'));})
+
+
 // Socket setup & pass server
 const io = socket(server);
 let controlPanelId = false;
@@ -81,4 +103,4 @@ io.on('connection', (socket) => {
 
     });
 
-
+ */

@@ -8,3 +8,6 @@ open in browser "localhost:5500"
 
 if the main.py did not work, try to install the socketio library using:
 pip install python-socketio
+
+
+
