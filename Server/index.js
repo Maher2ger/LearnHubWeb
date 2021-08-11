@@ -46,7 +46,7 @@ app.use(methodOverride('_method'));
 
 
 app.get('/',checkAuthenticated,(req, res) => {
-    res.render('index.ejs');
+    res.sendFile(path.resolve(__dirname+'/../FrontEnd/main.html'));
 });
 
 app.get('/login',checkNotAuthenticated,(req, res) => {
@@ -110,9 +110,6 @@ const server = app.listen(port, function(){
     console.log(`listening for requests on port ${port}`);
 });
 
-/*
-app.get('/',(req, res)=> {
-    res.sendFile(path.resolve(__dirname+'/../FrontEnd/main.html'));})
 
 
 // Socket setup & pass server
@@ -181,4 +178,4 @@ io.on('connection', (socket) => {
 
     });
 
- */
+
