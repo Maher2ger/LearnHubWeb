@@ -1,36 +1,114 @@
-const express = require('express');
-const socket = require('socket.io');
-var path = require('path');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
-// App setup
+const express = require('express');
 const app = express();
-const port = 5500;
-const server = app.listen(port, function(){
-    console.log(`listening for requests on port ${port}`);
-});
+const socket = require('socket.io');
+const path = require('path');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const flash = require('express-flash');
+var cookieParser = require('cookie-parser');
+const session = require('express-session');
+const methodOverride = require('method-override');
+
+const initializePassport = require('./passport-config');
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
+
+const users = [];
 
 app.set('views-engine','ejs');
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser())
+app.use(flash());
 
-app.get('/',(req, res) => {
+var sessionOpts = {
+    // Setting the key
+    secret: 'a cool secret',
+    // Forces the session to be saved back to the session store
+    resave: true,
+    // Forces a session that is "uninitialized" to be saved to the store.
+    saveUninitialized: true,
+    // Set the session cookie name by default to connect.sid
+    key: 'myapp_sid',
+    // If secure is set to true, and you access your site over HTTP, the cookie will not be set.
+    cookie: { maxAge: 1000* 60*60 * 2, secure: false }}
+
+app.use(session(sessionOpts));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride('_method'));
+
+
+app.get('/',checkAuthenticated,(req, res) => {
     res.render('index.ejs');
 });
 
-app.get('/login',(req, res) => {
+app.get('/login',checkNotAuthenticated,(req, res) => {
     res.render('login.ejs');
 });
 
-app.get('/register',(req, res) => {
+app.post('/login',checkNotAuthenticated ,passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
+app.get('/register',checkNotAuthenticated, (req, res) => {
     res.render('register.ejs');
 });
 
-app.post('/register',(req, res) => {
+app.post('/register',checkNotAuthenticated ,async (req, res) => {
+    try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        users.push({
+            id: Date.now().toString(),
+            name: req.body.name,
+            email: req.body.email,
+            password: hashedPassword
+        })
+        res.redirect('/login');
+    } catch {
+        res.redirect('/register');
+    }
+});
 
-})
+app.delete('logout', (req, res) => {
+    req.logout();
+    res.redirect('/login');
+});
+
 // Static files
 app.use(express.static('public'));  //public contains all media data
 app.use(express.static(__dirname + '/../FrontEnd'));
 
 
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }else{
+        res.redirect('/login');
+    }
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/');
+    }else{
+        next();
+    }
+}
+
+
+
+const port = 5500;
+const server = app.listen(port, function(){
+    console.log(`listening for requests on port ${port}`);
+});
 
 /*
 app.get('/',(req, res)=> {
