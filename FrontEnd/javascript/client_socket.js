@@ -11,5 +11,8 @@ socket.on('getSensorsInfos_response', (data) => {
     } */
     sensorsList.splice(0,sensorsList.length);
     updateSensorsList(data);
+    console.log(data);
     updateSensors();
 });
+
+
