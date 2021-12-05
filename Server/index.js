@@ -12,7 +12,7 @@ const passport = require('passport');
 
 // App setup
 const app = express();
-const port = 5550;
+const port = 5000;
 
 //EJS
 //app.set('views-engine','ejs');    //tells Express that you will be using EJS as template engine
