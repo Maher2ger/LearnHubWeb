@@ -1,4 +1,5 @@
 <h1>Register</h1>
+<%- include ('./partials/messages')%>
 <form action="/users/register" method="POST">
     <div>
         <label for="name">Name:</label>
@@ -8,7 +9,8 @@
                 id="name"
                 placeholder="enter your name"
                 value="<%= typeof name != 'undefined' ? name: ''%>"
-                required />
+                required
+        />
     </div>
     <div>
         <label for="email">Email</label>

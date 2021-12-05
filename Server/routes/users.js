@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/user.js');
 const bcrypt = require('bcrypt');
+const passport =  require('passport')
 
 //login handling
 router.get('/login', (req, res) => {
@@ -14,7 +15,11 @@ router.get('/register', (req, res) => {
 
 //register handling
 router.post('/login', (req, res,next) => {
-
+    passport.authenticate('local', {
+        successRedirect: '/dashboard',    //if the user successfully logged in, redirect to dashboard page
+        failureRedirect: '/users/login',  //if the user does not logged in successfully, redirect to login page
+        failureFlash:true,                 //get flash messages when an error occurs
+    }) (req, res, next)
 })
 
 router.post('/register',(req, res) => {
@@ -64,9 +69,10 @@ router.post('/register',(req, res) => {
                     newUser.save()                                      //save the new user in the database
                         .then((value)=> {
                             console.log(value);
+                            req.flash('success_msg', 'you are registered now!');    //implementing success flash message
                             res.redirect('/users/login')          //redirect to login page
                         })
-                        .catch(value=> console.log(value))
+                        .catch((value)=> console.log(value))
 
                 }
                 signup();
@@ -81,8 +87,9 @@ router.post('/register',(req, res) => {
 
 
 //logout
-router.get('/logout',(req, res)=>{
-
+router.get('/logout', (req, res) =>{
+    req.logout();                      //this function will be created by passport, it logs out the user session
+    req.flash('success_msg','You logged out');
+    res.redirect('/users/login')
 })
-
 module.exports = router;
