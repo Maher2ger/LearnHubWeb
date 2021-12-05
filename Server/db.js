@@ -1,4 +1,3 @@
-const uri = "mongodb+srv://maher:ababab@cluster0.p2b7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 

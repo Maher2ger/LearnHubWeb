@@ -1,5 +1,5 @@
 //connect to the socket from the client side
-var port = 5500;
+var port = 5550;
 const socket = io.connect(`http://localhost:${port}`);
 
 socket.on('getSensorsInfos_response', (data) => {

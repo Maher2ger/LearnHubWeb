@@ -48,6 +48,7 @@ function start() {
 
 function reset() {
     endTime = Date.now();
+    console.log('stop-recording');
     clearInterval(timerInterval);
     print("00:00:00");
     elapsedTime = 0;

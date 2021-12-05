@@ -44,7 +44,7 @@ def stopRecording(data):
     app.stopRecordingAllSensors()
 
 #make connection with host
-sio.connect('http://localhost:5500')
+sio.connect('http://localhost:5550')
 
 root = tk.Tk()
 root.geometry('600x400+10+20')
